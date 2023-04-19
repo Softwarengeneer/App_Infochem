@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {AppRegistry} from 'react-native';
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
 
-export default function App() {
+import AppReducer from './src/reducers';
+import AppNavigator from './src/navigations/AppNavigation';
+
+const context = createStore(AppReducer, applyMiddleware(thunk));
+
+console.disableYellowBox = true;
+
+function StarterApp() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <Provider store={context}>
+        <AppNavigator />
+      </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+AppRegistry.registerComponent('rn_starter_kit', () => StarterApp);
+
+export default StarterApp;
