@@ -11,6 +11,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import {AppIcon, AppStyles} from '../AppStyles';
 import {Configuration} from '../Configuration';
 import DrawerContainer from '../components/DrawerContainer';
+import CameraScreen from "../screens/CameraScreen";
 
 const Stack = createStackNavigator();
 
@@ -50,8 +51,33 @@ const HomeStack = () => (
         headerLeftContainerStyle: {paddingLeft: 10},
       })}
     />
+
   </Stack.Navigator>
 );
+const CameraStack = () => (
+    <Stack.Navigator
+        initialRouteName="Camera"
+        screenOptions={{
+            headerTintColor: 'red',
+            headerTitleStyle: styles.headerTitleStyle,
+            headerMode: 'float',
+        }}>
+        <Stack.Screen
+            name="Camera"
+            component={CameraScreen}
+            options={({navigation}) => ({
+                headerLeft: () => (
+                    <Pressable onPress={() => navigation.openDrawer()}>
+                        <Image style={styles.iconStyle} source={AppIcon.images.menu} />
+                    </Pressable>
+                ),
+                headerLeftContainerStyle: {paddingLeft: 10},
+            })}
+        />
+
+    </Stack.Navigator>
+);
+
 
 const BottomTab = createBottomTabNavigator();
 
@@ -78,6 +104,11 @@ const TabNavigator = () => (
       name="HomeStack"
       component={HomeStack}
     />
+      <BottomTab.Screen
+          options={{tabBarLabel: 'Camera'}}
+          name="CameraStack"
+          component={CameraStack}
+      />
   </BottomTab.Navigator>
 );
 

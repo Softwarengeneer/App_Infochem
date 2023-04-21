@@ -20,7 +20,7 @@ function SignupScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, styles.leftTitle]}>Create new account</Text>
+      <Text style={[styles.title, styles.leftTitle]}>Создать аккаунт</Text>
       <View style={styles.InputContainer}>
         <TextInput
           style={styles.body}
