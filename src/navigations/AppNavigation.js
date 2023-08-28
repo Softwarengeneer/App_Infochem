@@ -12,7 +12,9 @@ import {AppIcon, AppStyles} from '../AppStyles';
 import {Configuration} from '../Configuration';
 import DrawerContainer from '../components/DrawerContainer';
 import CameraScreen from "../screens/CameraScreen";
-
+import MendeleevScreen from "../screens/MendeleevScreen";
+import HistoryScreen from "../screens/HistoryScreen";
+import InfoElemento from '../screens/ModalScreen.js';
 const Stack = createStackNavigator();
 
 // login stack
@@ -77,6 +79,65 @@ const CameraStack = () => (
 
     </Stack.Navigator>
 );
+const HistoryStack = () =>(
+    <Stack.Navigator
+        initialRouteName="History"
+        screenOptions={{
+        headerTintColor: 'red',
+        headerTitleStyle: styles.headerTitleStyle,
+        headerMode: 'float',
+    }}>
+        <Stack.Screen
+            name="History"
+            component={HistoryScreen}
+            options={({navigation}) => ({
+                headerLeft: () => (
+                    <Pressable onPress={() => navigation.openDrawer()}>
+                        <Image style={styles.iconStyle} source={AppIcon.images.menu} />
+                    </Pressable>
+                ),
+                headerLeftContainerStyle: {paddingLeft: 10},
+            })}
+        />
+
+
+    </Stack.Navigator>
+
+);
+const MendeleevStack = () =>(
+    <Stack.Navigator
+        initialRouteName="Mendeleev"
+        screenOptions={{
+            headerTintColor: 'red',
+            headerTitleStyle: styles.headerTitleStyle,
+            headerMode: 'float',
+        }}>
+        <Stack.Screen
+            name="Mendeleev"
+            component={MendeleevScreen}
+            options={({navigation}) => ({
+                headerLeft: () => (
+                    <Pressable onPress={() => navigation.openDrawer()}>
+                        <Image style={styles.iconStyle} source={AppIcon.images.menu} />
+                    </Pressable>
+                ),
+                headerLeftContainerStyle: {paddingLeft: 10},
+            })}
+        />
+        <Stack.Group
+            screenOptions={() => ({
+                presentation: 'modal',
+                headerRight: () => null,
+
+            })}>
+            <Stack.Screen name="InfoElemento" component={InfoElemento} />
+
+        </Stack.Group>
+
+
+    </Stack.Navigator>
+
+);
 
 
 const BottomTab = createBottomTabNavigator();
@@ -100,14 +161,24 @@ const TabNavigator = () => (
       headerShown: false,
     }}>
     <BottomTab.Screen
-      options={{tabBarLabel: 'Home'}}
+      options={{tabBarLabel: 'Рисовалка'}}
       name="HomeStack"
       component={HomeStack}
     />
       <BottomTab.Screen
-          options={{tabBarLabel: 'Camera'}}
+          options={{tabBarLabel: 'Камера'}}
           name="CameraStack"
           component={CameraStack}
+      />
+      <BottomTab.Screen
+          options={{tabBarLabel: 'История'}}
+          name="HistoryStack"
+          component={HistoryStack}
+      />
+      <BottomTab.Screen
+          options={{tabBarLabel: 'Таблица'}}
+          name="MendeleevStack"
+          component={MendeleevStack}
       />
   </BottomTab.Navigator>
 );

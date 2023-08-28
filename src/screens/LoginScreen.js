@@ -11,7 +11,7 @@ import {AppStyles} from '../AppStyles';
 //import firebase from '@react-native-firebase/app';
 //import auth from '@react-native-firebase/auth';
 //import firestore from '@react-native-firebase/firestore';
-import {useDispatch} from 'react-redux';
+
 
 function LoginScreen({navigation}) {
   const [email, setEmail] = useState('');
@@ -85,6 +85,9 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginLeft: 20,
   },
+  error:{
+    textDecorationColor: 'red',
+  },
   content: {
     paddingLeft: 50,
     paddingRight: 50,
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
     color: AppStyles.color.white,
   },
   placeholder: {
-    color: 'red',
+    color: AppStyles.color.red,
   },
   InputContainer: {
     width: AppStyles.textInputWidth.main,

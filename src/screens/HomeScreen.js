@@ -9,13 +9,13 @@ function HomeScreen({navigation}) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Home',
+      title: 'Ручной ввод',
     });
   }, []);
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Добро пожаловать {auth.user?.fullname ?? 'Братишка'}</Text>
+      <Text style={styles.title}>Нарисуйте вашу молекулу здесь</Text>
     </ScrollView>
   );
 }
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     padding: Configuration.home.listing_item.offset,
   },
   title: {
-    fontWeight: 'bold',
     color: AppStyles.color.title,
     fontSize: 25,
+    alignItems:"center",
   },
   userPhoto: {
     width: 40,
